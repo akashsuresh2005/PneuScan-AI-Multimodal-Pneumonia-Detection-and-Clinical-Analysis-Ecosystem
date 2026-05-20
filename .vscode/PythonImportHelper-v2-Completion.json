@@ -1,0 +1,247 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "detail": "tensorflow",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "load_multimodal_graph",
+        "kind": 2,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "def load_multimodal_graph():\n    global model\n    print(f\"🔄 Initializing warm-load protocol from absolute path: {MODEL_PATH}\")\n    if not os.path.exists(MODEL_PATH):\n        print(f\"❌ CRITICAL ERROR: Model weights not found at {MODEL_PATH}\")\n        return\n    try:\n        model = tf.keras.models.load_model(MODEL_PATH, compile=False)\n        model.predict([np.zeros((1, 150, 150, 3)), np.zeros((1, 4))])\n        print(\"🚀 Success: Multimodal Functional Attention Graph successfully mapped to RAM!\")",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_anatomic_localization",
+        "kind": 2,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "def get_anatomic_localization(heatmap):\n    \"\"\"\n    Analyzes Grad-CAM heatmap density to estimate the localized lung zone.\n    Divides the 150x150 frame into matrix quadrants representing lobes.\n    \"\"\"\n    try:\n        idx = np.argmax(heatmap)\n        y, x = np.unravel_index(idx, heatmap.shape)\n        side = \"Left Lung\" if x > 75 else \"Right Lung\"\n        if y < 50:",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "synthesize_clinical_features",
+        "kind": 2,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "def synthesize_clinical_features(age: float, gender: str, fever: str, spo2: float):\n    \"\"\"Normalizes and maps clinical scalars into a 1x4 matrix matching meta_input constraints.\"\"\"\n    norm_age = float(age) / 100.0\n    norm_gender = 1.0 if str(gender).strip().lower() == 'male' else 0.0\n    norm_fever = 1.0 if str(fever).strip().lower() == 'yes' else 0.0\n    norm_spo2 = float(spo2) / 100.0\n    return np.array([[norm_age, norm_gender, norm_fever, norm_spo2]], dtype='float32')\n# --- RE-ENGINEERED GRAD-CAM LOGIC (FIXED MATRIX BROADCAST) ---\ndef generate_multimodal_gradcam(image_tensor, clinical_tensor, functional_model):\n    \"\"\"",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_multimodal_gradcam",
+        "kind": 2,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "def generate_multimodal_gradcam(image_tensor, clinical_tensor, functional_model):\n    \"\"\"\n    Extracts gradients from the base feature extractor sub-model and maps \n    pulmonary attention maps back onto the 150x150 array canvas space.\n    \"\"\"\n    try:\n        base_layer = None\n        for layer in functional_model.layers:\n            if isinstance(layer, tf.keras.Model) or \"mobilenet\" in layer.name:\n                base_layer = layer",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "app = FastAPI(title=\"PneuScan AI Multimodal Diagnostic Engine\", version=\"1.2\")\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# --- MODEL LOADING & WARMUP (ROBUST ABSOLUTE PATHS) ---\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.abspath(__file__))\nMODEL_PATH = os.path.join(BASE_DIR, \"models\", \"Pneumonia_Detection_BIT_Final(1).keras\")\nmodel = None\n@app.on_event(\"startup\")\ndef load_multimodal_graph():\n    global model\n    print(f\"🔄 Initializing warm-load protocol from absolute path: {MODEL_PATH}\")\n    if not os.path.exists(MODEL_PATH):\n        print(f\"❌ CRITICAL ERROR: Model weights not found at {MODEL_PATH}\")\n        return",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_PATH",
+        "kind": 5,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "MODEL_PATH = os.path.join(BASE_DIR, \"models\", \"Pneumonia_Detection_BIT_Final(1).keras\")\nmodel = None\n@app.on_event(\"startup\")\ndef load_multimodal_graph():\n    global model\n    print(f\"🔄 Initializing warm-load protocol from absolute path: {MODEL_PATH}\")\n    if not os.path.exists(MODEL_PATH):\n        print(f\"❌ CRITICAL ERROR: Model weights not found at {MODEL_PATH}\")\n        return\n    try:",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "ai-engine.main",
+        "description": "ai-engine.main",
+        "peekOfCode": "model = None\n@app.on_event(\"startup\")\ndef load_multimodal_graph():\n    global model\n    print(f\"🔄 Initializing warm-load protocol from absolute path: {MODEL_PATH}\")\n    if not os.path.exists(MODEL_PATH):\n        print(f\"❌ CRITICAL ERROR: Model weights not found at {MODEL_PATH}\")\n        return\n    try:\n        model = tf.keras.models.load_model(MODEL_PATH, compile=False)",
+        "detail": "ai-engine.main",
+        "documentation": {}
+    },
+    {
+        "label": "generate_gradcam",
+        "kind": 2,
+        "importPath": "ai-engine.utils",
+        "description": "ai-engine.utils",
+        "peekOfCode": "def generate_gradcam(img_array, model, last_conv_layer_name=\"top_conv\"):\n    # 1. Create a model that maps the input image to the activations of the last conv layer\n    grad_model = tf.keras.models.Model(\n        [model.inputs], [model.get_layer(last_conv_layer_name).output, model.output]\n    )\n    with tf.GradientTape() as tape:\n        last_conv_layer_output, preds = grad_model(img_array)\n        class_channel = preds[:, 0]\n    # 2. Find the gradient of the output class with respect to the conv layer output\n    grads = tape.gradient(class_channel, last_conv_layer_output)",
+        "detail": "ai-engine.utils",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "client.node_modules.flatted.python.flatted",
+        "description": "client.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    for i in range(len(value)):\n        yield i",
+        "detail": "client.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "client.node_modules.flatted.python.flatted",
+        "description": "client.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    for i in range(len(value)):\n        yield i\ndef _object_keys(value):\n    for key in value:\n        yield key\ndef _is_array(value):",
+        "detail": "client.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "client.node_modules.flatted.python.flatted",
+        "description": "client.node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "client.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "client.node_modules.flatted.python.flatted",
+        "description": "client.node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "client.node_modules.flatted.python.flatted",
+        "documentation": {}
+    }
+]

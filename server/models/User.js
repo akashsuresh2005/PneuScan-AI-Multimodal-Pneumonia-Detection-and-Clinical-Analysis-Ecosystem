@@ -1,0 +1,10 @@
+const mongoose = require('mongoose');
+
+const UserSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ['doctor', 'patient'], default: 'patient' },
+    patientId: { type: String, unique: true, sparse: true } // This will be their Mobile Number
+});
+
+module.exports = mongoose.model('User', UserSchema);

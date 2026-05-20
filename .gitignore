@@ -1,0 +1,10 @@
+# Ignore Python virtual environments
+ai-engine/venv/
+venv/
+ENV/
+
+# Ignore Python bytecode cache files
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
