@@ -1,0 +1,10 @@
+Set-Content -Path "ai-engine/requirements.txt" -Value @"
+fastapi
+uvicorn
+tensorflow
+keras
+numpy
+pillow
+python-multipart
+opencv-python-headless
+"@
