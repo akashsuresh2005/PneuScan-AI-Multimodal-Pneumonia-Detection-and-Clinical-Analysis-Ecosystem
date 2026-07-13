@@ -166,13 +166,13 @@ The authentication layer secures data streams via role-based access control, pro
 
 Once authenticated, radiologists are presented with a unified workstation to ingest electronic health metrics and run localized tensor evaluations.
 
-### Multimodal Ingestion Desk (`image_e812aa.png`)
+### Multimodal Ingestion Desk 
 
 The primary workstation panel displays foundational platform metrics while handling the concurrent ingestion of patient vitals (Age, Gender, Fever status, $SpO_2$ levels) and the target DICOM digital radiograph file.
 
-![Multimodal Ingestion Workstation](<img width="1892" height="916" alt="image" src="https://github.com/user-attachments/assets/100fd37f-fb9f-419a-a492-75a4b89b98ae" />)
+<img width="1524" height="734" alt="Image" src="https://github.com/user-attachments/assets/a9206cd0-5cf1-4895-8440-c4bd0d93109c" />
 
-### Active Core Inference View (`image_e816c8.jpg`)
+### Active Core Inference View 
 
 Upon launching execution, the model runs a localized evaluation overlay, returning diagnostic classification banners (e.g., **Viral Pneumonia**), bounding attention heatmaps, architectural confidence scores, and structured clinical guidelines.
 
