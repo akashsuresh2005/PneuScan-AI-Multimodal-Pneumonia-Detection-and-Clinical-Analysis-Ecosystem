@@ -50,9 +50,12 @@ router.post('/predict', upload.single('xray'), async (req, res) => {
 
         const AI_URL = process.env.AI_ENGINE_URL || 'http://127.0.0.1:8000/predict';
 
+        console.log("AI_URL =", AI_URL);
+
         // 3. Dispatch payload to FastAPI Engine
         const response = await axios.post(AI_URL, formData, {
-            headers: { ...formData.getHeaders() }
+            headers: { ...formData.getHeaders() },
+            timeout: 120000 // 2 minutes, to accommodate Render cold starts
         });
 
         const { 
@@ -91,17 +94,34 @@ router.post('/predict', upload.single('xray'), async (req, res) => {
         
         res.status(201).json(record);
     } catch (error) {
-        console.error("AI Sync Error:", error.message);
+        console.error("========== AI ERROR ==========");
+        console.error(error.message);
+
+        if (error.response) {
+            console.error("Status:", error.response.status);
+            console.error("Data:", error.response.data);
+        }
+
+        if (error.request) {
+            console.error("No response received from AI engine");
+        }
+
+        console.error(error.stack);
+
         if (req.file && fs.existsSync(req.file.path)) {
             fs.unlinkSync(req.file.path);
         }
-        
+
         // Handle explicit FastAPI errors smoothly
-        if (error.response && error.response.data && error.response.data.detail) {
-            return res.status(error.response.status).json({ error: error.response.data.detail });
+        if (error.response?.data?.detail) {
+            return res.status(error.response.status).json({
+                error: error.response.data.detail
+            });
         }
-        
-        res.status(500).json({ error: "AI Engine Unreachable or Internal Pipeline Failure" });
+
+        res.status(500).json({
+            error: "AI Engine Unreachable or Internal Pipeline Failure"
+        });
     }
 });
 
