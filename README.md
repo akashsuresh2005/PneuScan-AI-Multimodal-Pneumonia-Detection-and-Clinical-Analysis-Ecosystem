@@ -155,11 +155,10 @@ The authentication layer secures data streams via role-based access control, pro
 
 ### Clinician Workstation Authentication (`image_e80f2c.jpg`)
 
-![Clinician Auth Gateway](<img width="1024" height="495" alt="image" src="https://github.com/user-attachments/assets/ef19f3cd-ac09-4587-8da8-96d05e2adf52" />)
 
 ### Patient Portal Authentication (`image_e86c82.png`)
 
-![Patient Auth Gateway](<img width="790" height="923" alt="image" src="https://github.com/user-attachments/assets/13ace065-e617-484b-a298-f2d190b29123" />)
+<img width="1508" height="733" alt="Image" src="https://github.com/user-attachments/assets/bc29db0f-a9a5-4e07-accd-c91196c18473" />
 
 ---
 
