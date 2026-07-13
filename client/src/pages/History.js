@@ -183,7 +183,7 @@ const History = () => {
   const [records, setRecords] = useState([]);
 
   const fetchHistory = () => {
-    axios.get('http://localhost:5000/api/history')
+    axios.get('https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/api/history')
       .then(res => setRecords(res.data))
       .catch(err => console.log(err));
   };
@@ -193,7 +193,7 @@ const History = () => {
   const deleteRecord = async (id) => {
     if (window.confirm("Are you sure you want to permanently delete this clinical record?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/${id}`);
+        await axios.delete(`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/api/${id}`);
         setRecords(prev => prev.filter(item => item._id !== id));
       } catch (e) {
         console.error(e);
