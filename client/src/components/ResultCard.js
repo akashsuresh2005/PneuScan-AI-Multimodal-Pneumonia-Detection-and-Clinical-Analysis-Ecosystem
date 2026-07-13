@@ -25,7 +25,7 @@ const ResultCard = ({ result, originalFile }) => {
           <span className="absolute bottom-4 left-4 bg-black/50 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase backdrop-blur-md">Original X-Ray</span>
         </div>
         <div className="relative group border-l border-white/10">
-          <img src={`http://localhost:5000/uploads/${result.heatmapPath}`} alt="Heatmap" className="w-full h-full object-cover" />
+          <img src={`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/uploads/${result.heatmapPath}`} alt="Heatmap" className="w-full h-full object-cover" />
           <span className="absolute bottom-4 left-4 bg-blue-600/80 text-white text-[10px] px-3 py-1 rounded-full font-bold uppercase backdrop-blur-md">AI Heatmap Visualization</span>
         </div>
       </div>
