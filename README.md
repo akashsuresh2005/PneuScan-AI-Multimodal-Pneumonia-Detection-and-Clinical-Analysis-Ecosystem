@@ -21,8 +21,11 @@ The ecosystem is split cleanly into a high-performance deep learning microservic
 * **Role-Based Workstation Access:** Segregates specialized, TLS-secured workflows for both **Clinicians** (Radiologists initializing deep learning clusters) and **Patients** checking output nodes.
 
 ---
+# 🩺 PneuScan AI
 
-## 📁 Repository Structure
+---
+
+# 📂 Repository Structure
 
 ```text
 PneuScan-AI-Project/
@@ -40,124 +43,165 @@ PneuScan-AI-Project/
 │   ├── package.json                                 # Node Modules Configuration
 │   └── public/
 └── .gitignore                                       # System-wide Dependency Resets
-
-⚡️ Backend Service Setup
-To initialize and launch the FastAPI inference network:
-
-Navigate to the engine sub-directory:
-
-Bash
-cd ai-engine
-Activate your Python virtual environment:
-
-Windows (PowerShell):
-
-PowerShell
-.\venv\Scripts\Activate.ps1
-Linux / macOS:
-
-Bash
-source venv/bin/activate
-Install required deep learning frameworks:
-
-Bash
-pip install -r requirements.txt
-Spin up the localized runtime daemon:
-
-Bash
-uvicorn main:app --reload --port 5000
-💻 Frontend Workstation Setup
-To bring up the edge-to-edge Clinical Console interface:
-
-Navigate to the frontend UI root:
-
-Bash
-cd client
-Fetch workspace distribution packages:
-
-Bash
-npm install
-Initialize the development build server:
-
-Bash
-npm run dev
-Open http://localhost:3000 in your browser to view the edge-to-edge UI.
+```
 
 ---
 
-## 📈 Experimental Evaluation & Analytical Results
+# 🚀 Getting Started
+
+## Backend Service Setup
+
+To initialize and launch the FastAPI inference network:
+
+### Navigate to the engine sub-directory
+
+```bash
+cd ai-engine
+```
+
+### Activate your Python virtual environment
+
+**Windows (PowerShell)**
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+### Install required deep learning frameworks
+
+```bash
+pip install -r requirements.txt
+```
+
+### Spin up the localized runtime daemon
+
+```bash
+uvicorn main:app --reload --port 5000
+```
+
+---
+
+## Frontend Workstation Setup
+
+To bring up the edge-to-edge Clinical Console interface:
+
+### Navigate to the frontend UI root
+
+```bash
+cd client
+```
+
+### Fetch workspace distribution packages
+
+```bash
+npm install
+```
+
+### Initialize the development build server
+
+```bash
+npm run dev
+```
+
+Open **http://localhost:3000** in your browser to view the edge-to-edge UI.
+
+---
+
+# 📈 Experimental Evaluation & Analytical Results
 
 The multimodal architecture was evaluated against standalone baseline models to measure the performance impact of fusing radiograph spatial matrices with clinical vector features.
 
-### 1. Performance Metrics Matrix
+## Performance Metrics Matrix
 
-| Model Architecture | Input Modalities | Validation Accuracy | Inference Latency | F1-Score |
-| :--- | :--- | :---: | :---: | :---: |
-| Baseline CNN (ResNet-50) | Image Matrix Only | 89.2% | 1.8s | 0.88 |
-| Baseline Dense Network | Clinical Vectors Only | 74.5% | **0.3s** | 0.71 |
-| **PneuScan AI (Proposed)** | **Image Matrix + Clinical Vectors** | **98.4%** | **1.2s** | **0.97** |
+| Model Architecture         | Input Modalities                    | Validation Accuracy | Inference Latency | F1-Score |
+| :------------------------- | :---------------------------------- | :-----------------: | :---------------: | :------: |
+| Baseline CNN (ResNet-50)   | Image Matrix Only                   |        89.2%        |        1.8s       |   0.88   |
+| Baseline Dense Network     | Clinical Vectors Only               |        74.5%        |      **0.3s**     |   0.71   |
+| **PneuScan AI (Proposed)** | **Image Matrix + Clinical Vectors** |      **98.4%**      |      **1.2s**     | **0.97** |
 
-### 2. Key Findings & Execution Insights
+## Key Findings & Execution Insights
+
 * **Multimodal Fusion Boost:** Combining clinical risk vectors with image layers recovered false negatives caused by early-stage opacities, raising the baseline validation accuracy by **9.2%**.
-* **Warm-Load Optimization:** Graph compilation during the system's `startup` event reduced standard runtime model invocation lag from 2.9s down to a steady **1.2s** inference cycle.
+* **Warm-Load Optimization:** Graph compilation during the system's `startup` event reduced standard runtime model invocation lag from **2.9s** down to a steady **1.2s** inference cycle.
 * **Sieve Localization:** The attention layer isolated region boundaries corresponding directly with clinical radiologist validation notes for active pneumonia clusters.
 
-### 3. Execution Logs & Terminal Output
+## Execution Logs & Terminal Output
+
 ```text
 [INFO]  Initializing warm-load protocol from absolute path: C:\...\Pneumonia_Detection_BIT_Final(1).keras
 [INFO]  TensorFlow/Keras computational graph compiled successfully.
-[INFO]  Uvicorn server running on [http://127.0.0.1:5000](http://127.0.0.1:5000) (Press CTRL+C to quit)
+[INFO]  Uvicorn server running on http://127.0.0.1:5000 (Press CTRL+C to quit)
 [DEBUG] Incoming Multimodal Payload: Image [900x800x1] | Clinical Vector [Age: 45, Temp: 102.1, WBC: 11.5]
 [INFO]  Inference Cycle Completed in 1.182 seconds. Result: 94.7% PNEUMONIA_CONFIRMED
+```
 
+---
 
-## 📸 System Interface & Operational Workflows
+# 📸 System Interface & Operational Workflows
 
 To showcase the full end-to-end capabilities of this healthcare ecosystem, the operational interface is broken down into three distinct modules: **Access Gateways**, **The Clinician Diagnostic Pipeline**, and **The Patient Archives**.
 
-### 1. Dual-Role Access Gateways
+---
+
+## Dual-Role Access Gateways
+
 The authentication layer secures data streams via role-based access control, provisioning separate configurations for institutional staff and patients.
 
-| Gate 1.1: Clinician Workstation Auth (`image_e80f2c.jpg`) | Gate 1.2: Patient Portal Auth (`image_e86c82.png`) |
-| :---: | :---: |
-| ![Clinician Auth Gateway](<img width="1024" height="495" alt="image" src="https://github.com/user-attachments/assets/ef19f3cd-ac09-4587-8da8-96d05e2adf52" />
-) | ![Patient Auth Gateway](<img width="790" height="923" alt="image" src="https://github.com/user-attachments/assets/13ace065-e617-484b-a298-f2d190b29123" />
-) |
-|  
+### Clinician Workstation Authentication (`image_e80f2c.jpg`)
+
+![Clinician Auth Gateway](<img width="1024" height="495" alt="image" src="https://github.com/user-attachments/assets/ef19f3cd-ac09-4587-8da8-96d05e2adf52" />)
+
+### Patient Portal Authentication (`image_e86c82.png`)
+
+![Patient Auth Gateway](<img width="790" height="923" alt="image" src="https://github.com/user-attachments/assets/13ace065-e617-484b-a298-f2d190b29123" />)
 
 ---
 
-### 2. The Clinician Diagnostic Pipeline
+## The Clinician Diagnostic Pipeline
+
 Once authenticated, radiologists are presented with a unified workstation to ingest electronic health metrics and run localized tensor evaluations.
 
-#### View 2.1: Multimodal Ingestion Desk (`image_e812aa.png`)
+### Multimodal Ingestion Desk (`image_e812aa.png`)
+
 The primary workstation panel displays foundational platform metrics while handling the concurrent ingestion of patient vitals (Age, Gender, Fever status, $SpO_2$ levels) and the target DICOM digital radiograph file.
-![Multimodal Ingestion Workstation](<img width="1892" height="916" alt="image" src="https://github.com/user-attachments/assets/100fd37f-fb9f-419a-a492-75a4b89b98ae" />
-)
 
-#### View 2.2: Active Core Inference View (`image_e816c8.jpg`)
+![Multimodal Ingestion Workstation](<img width="1892" height="916" alt="image" src="https://github.com/user-attachments/assets/100fd37f-fb9f-419a-a492-75a4b89b98ae" />)
+
+### Active Core Inference View (`image_e816c8.jpg`)
+
 Upon launching execution, the model runs a localized evaluation overlay, returning diagnostic classification banners (e.g., **Viral Pneumonia**), bounding attention heatmaps, architectural confidence scores, and structured clinical guidelines.
-![Active Core Inference View](<img width="668" height="886" alt="image" src="https://github.com/user-attachments/assets/d2445e1d-370d-4b22-9ba3-131205403dff" />
-)
 
-#### View 2.3: Central Clinical Archives (`image_e819f3.png`)
+![Active Core Inference View](<img width="668" height="886" alt="image" src="https://github.com/user-attachments/assets/d2445e1d-370d-4b22-9ba3-131205403dff" />)
+
+### Central Clinical Archives (`image_e819f3.png`)
+
 A historical ledger module that logs cross-sectional patient classifications over time, enabling rapid audit trails and etiology tracking across institutional nodes.
-![Central Clinical Archives](<img width="1887" height="912" alt="image" src="https://github.com/user-attachments/assets/a4ec29e4-8b55-4595-b188-8b423d914a92" />
-)
+
+![Central Clinical Archives](<img width="1887" height="912" alt="image" src="https://github.com/user-attachments/assets/a4ec29e4-8b55-4595-b188-8b423d914a92" />)
 
 ---
 
-### 3. The Patient Portal & Output Summaries
+## The Patient Portal & Output Summaries
+
 Patients can securely authenticate into their own node to review historical clinical summaries or pull certified, print-ready laboratory files.
 
-#### View 3.1: Personalized Medical Records Dashboard (`image_e86c45.png`)
-A simplified, patient-facing layout showcasing chronologically ordered analysis cards containing neural attention matrices, easy-to-read clinical status indicators, and report download anchors.
-![Patient Medical Records Dashboard](<img width="1891" height="916" alt="image" src="https://github.com/user-attachments/assets/1df14f30-eae5-4410-bf40-383698426f12" />
-)
+### Personalized Medical Records Dashboard (`image_e86c45.png`)
 
-#### View 3.2: Generated Pulmonary Assessment Report (`image_e86d23.png`)
+A simplified, patient-facing layout showcasing chronologically ordered analysis cards containing neural attention matrices, easy-to-read clinical status indicators, and report download anchors.
+
+![Patient Medical Records Dashboard](<img width="1891" height="916" alt="image" src="https://github.com/user-attachments/assets/1df14f30-eae5-4410-bf40-383698426f12" />)
+
+### Generated Pulmonary Assessment Report (`image_e86d23.png`)
+
 A professional, automated laboratory output containing full patient metadata, bold radiological finding indicators, deep learning confidence records, and an official digital verification seal.
-![Generated Pulmonary Assessment Report](<img width="608" height="851" alt="image" src="https://github.com/user-attachments/assets/bdaefff2-57b8-4d37-873a-bebda875b5f7" />
-)
+
+![Generated Pulmonary Assessment Report](<img width="608" height="851" alt="image" src="https://github.com/user-attachments/assets/bdaefff2-57b8-4d37-873a-bebda875b5f7" />)
+
 
 ---
