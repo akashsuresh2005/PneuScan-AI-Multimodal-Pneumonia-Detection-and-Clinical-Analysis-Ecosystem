@@ -280,7 +280,7 @@ const Dashboard = () => {
     fd.append('fever', patientData.fever);
     fd.append('spo2', patientData.spo2);
     try {
-      const res = await axios.post('http://localhost:5000/api/predict', fd);
+      const res = await axios.post('https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/api/predict', fd);
       setResult(res.data);
     } catch (e) {
       alert("Analysis Failed. Ensure both servers (Port 5000 and 8000) are running.");
