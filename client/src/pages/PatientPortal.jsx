@@ -8,7 +8,7 @@ const PatientPortal = ({ patientId }) => {
   const [myRecords, setMyRecords] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/my-reports/${patientId}`)
+    axios.get(`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/api/my-reports/${patientId}`)
       .then(res => setMyRecords(res.data))
       .catch(err => console.error("Access denied to requested medical indices", err));
   }, [patientId]);
@@ -40,7 +40,7 @@ const PatientPortal = ({ patientId }) => {
                   {/* ENLARGED CORE CONTAINER: AI NEURAL ATTENTION HEATMAP */}
                   <div className="w-28 h-28 rounded-2xl overflow-hidden border border-slate-200 bg-[#0c1017] shrink-0 flex items-center justify-center shadow-md">
                     <img 
-                      src={`http://localhost:5000/uploads/${report.heatmapPath}`} 
+                      src={`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/uploads/${report.heatmapPath}`} 
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
                       alt="Neural Attention Heatmap Matrix" 
                       onError={(e) => {
