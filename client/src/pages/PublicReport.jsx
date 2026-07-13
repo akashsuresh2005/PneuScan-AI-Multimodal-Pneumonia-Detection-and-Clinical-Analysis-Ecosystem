@@ -9,7 +9,7 @@ const PublicReport = () => {
 
     const verifyAccess = async () => {
         try {
-            const res = await axios.post(`http://localhost:5000/api/public-report/${uid}`, { code });
+            const res = await axios.post(`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/api/public-report/${uid}`, { code });
             setReport(res.data);
         } catch (err) { alert("Access Denied"); }
     };
@@ -36,11 +36,11 @@ const PublicReport = () => {
             <div className="grid grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-3xl shadow-lg">
                     <h3 className="font-bold mb-4">Original X-Ray</h3>
-                    <img src={`http://localhost:5000/uploads/${report.filename}`} className="rounded-xl border shadow-sm" alt="X-ray" />
+                    <img src={`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/uploads/${report.filename}`} className="rounded-xl border shadow-sm" alt="X-ray" />
                 </div>
                 <div className="bg-white p-6 rounded-3xl shadow-lg border-2 border-red-100">
                     <h3 className="font-bold mb-4 text-red-600">AI Heatmap Analysis</h3>
-                    <img src={`http://localhost:5000/uploads/${report.heatmapPath}`} className="rounded-xl border shadow-sm" alt="AI Heatmap" />
+                    <img src={`https://pneuscan-ai-multimodal-pneumonia-jhqi.onrender.com/uploads/${report.heatmapPath}`} className="rounded-xl border shadow-sm" alt="AI Heatmap" />
                     <p className="mt-4 text-xs text-slate-500 italic">Red areas indicate regions of concern identified by the PneuScan AI model.</p>
                 </div>
             </div>
