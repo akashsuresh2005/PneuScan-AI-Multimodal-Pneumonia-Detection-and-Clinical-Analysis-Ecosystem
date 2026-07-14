@@ -182,7 +182,11 @@ Upon launching execution, the model runs a localized evaluation overlay, returni
 
 A historical ledger module that logs cross-sectional patient classifications over time, enabling rapid audit trails and etiology tracking across institutional nodes.
 
-![Central Clinical Archives](<img width="1887" height="912" alt="image" src="https://github.com/user-attachments/assets/a4ec29e4-8b55-4595-b188-8b423d914a92" />)
+<img width="1530" height="727" alt="Image" src="https://github.com/user-attachments/assets/1df6be19-6e8f-4988-9da6-fab6b7117df8" />
+
+
+
+
 
 ---
 
@@ -190,17 +194,17 @@ A historical ledger module that logs cross-sectional patient classifications ove
 
 Patients can securely authenticate into their own node to review historical clinical summaries or pull certified, print-ready laboratory files.
 
-### Personalized Medical Records Dashboard (`image_e86c45.png`)
+<img width="1522" height="770" alt="Image" src="https://github.com/user-attachments/assets/05bd72b4-00d1-495f-b3d2-a61513d33b14" />
+
 
 A simplified, patient-facing layout showcasing chronologically ordered analysis cards containing neural attention matrices, easy-to-read clinical status indicators, and report download anchors.
 
-![Patient Medical Records Dashboard](<img width="1891" height="916" alt="image" src="https://github.com/user-attachments/assets/1df14f30-eae5-4410-bf40-383698426f12" />)
 
-### Generated Pulmonary Assessment Report (`image_e86d23.png`)
+### Generated Pulmonary Assessment Report
 
 A professional, automated laboratory output containing full patient metadata, bold radiological finding indicators, deep learning confidence records, and an official digital verification seal.
 
-![Generated Pulmonary Assessment Report](<img width="608" height="851" alt="image" src="https://github.com/user-attachments/assets/bdaefff2-57b8-4d37-873a-bebda875b5f7" />)
+<img width="467" height="647" alt="Image" src="https://github.com/user-attachments/assets/e73a1d67-6d35-4634-a3ef-e7ecd080db63" />
 
 
 ---
