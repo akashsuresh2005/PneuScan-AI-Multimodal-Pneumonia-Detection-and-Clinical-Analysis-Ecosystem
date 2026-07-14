@@ -4,6 +4,7 @@ const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
+const path = require('path');
 const Patient = require('../models/Patient');
 
 const upload = multer({ dest: 'uploads/' });
@@ -62,6 +63,7 @@ router.post('/predict', upload.single('xray'), async (req, res) => {
             prediction, 
             confidence, 
             heatmapPath, 
+            heatmapImageBase64,
             findings, 
             severity, 
             severityLevel, 
@@ -70,6 +72,16 @@ router.post('/predict', upload.single('xray'), async (req, res) => {
         } = response.data;
 
         if (error) return res.status(500).json({ error: "AI Engine Error", details: error });
+
+        // 3.5 Save the heatmap image (received as base64 from the AI Engine) into Node's own uploads folder
+        if (heatmapImageBase64 && heatmapPath) {
+            const uploadsDir = path.join(__dirname, '..', 'uploads');
+            if (!fs.existsSync(uploadsDir)) {
+                fs.mkdirSync(uploadsDir, { recursive: true });
+            }
+            const heatmapBuffer = Buffer.from(heatmapImageBase64, 'base64');
+            fs.writeFileSync(path.join(uploadsDir, heatmapPath), heatmapBuffer);
+        }
 
         // 4. Save comprehensive clinical documentation to MongoDB Atlas
         const record = await Patient.create({
