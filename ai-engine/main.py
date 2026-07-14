@@ -228,6 +228,7 @@ import cv2
 import uuid
 import io
 import os
+import base64
 from PIL import Image
 app = FastAPI(title="PneuScan AI Multimodal Diagnostic Engine", version="1.2")
 
@@ -401,13 +402,15 @@ async def predict(
         superimposed = cv2.addWeighted(original_cv, 0.6, heatmap_color, 0.4, 0)
 
         heatmap_name = f"heatmap_{uuid.uuid4()}.jpg"
-        
-        # ✅ FIXED: Save heatmaps locally inside ai-engine/uploads
-        save_dir = os.path.join(BASE_DIR, "uploads")
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
-            
-        cv2.imwrite(os.path.join(save_dir, heatmap_name), superimposed)
+
+        # ✅ FIXED: Encode heatmap as base64 and return it directly instead of
+        # saving to local disk (the AI Engine and Node backend are separate
+        # services on separate filesystems, so a locally saved file was never
+        # reachable by the Node backend's /uploads static route).
+        success, buffer = cv2.imencode('.jpg', superimposed)
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to encode heatmap image.")
+        heatmap_base64 = base64.b64encode(buffer).decode('utf-8')
 
         return {
             "prediction": result,
@@ -416,6 +419,7 @@ async def predict(
             "severityLevel": severity_level,
             "localization": localization,
             "heatmapPath": heatmap_name,
+            "heatmapImageBase64": heatmap_base64,
             "findings": [
                 f"Neural attention path tracking maps to the {localization} zone." if result != "NORMAL" else "No focal airspace consolidation found.",
                 f"Diagnostic Evaluation: Classified as {result} with an estimated clinical status of {severity_label}.",
