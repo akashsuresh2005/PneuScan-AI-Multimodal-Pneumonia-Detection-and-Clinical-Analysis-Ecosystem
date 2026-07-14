@@ -174,9 +174,9 @@ The primary workstation panel displays foundational platform metrics while handl
 
 ### Active Core Inference View 
 
-Upon launching execution, the model runs a localized evaluation overlay, returning diagnostic classification banners (e.g., **Viral Pneumonia**), bounding attention heatmaps, architectural confidence scores, and structured clinical guidelines.
+Upon launching execution, the model runs a localized evaluation overlay, returning diagnostic classification banners (e.g., **Bacterial Pneumonia**), bounding attention heatmaps, architectural confidence scores, and structured clinical guidelines.
 
-![Active Core Inference View](<img width="668" height="886" alt="image" src="https://github.com/user-attachments/assets/d2445e1d-370d-4b22-9ba3-131205403dff" />)
+<img width="1520" height="728" alt="Image" src="https://github.com/user-attachments/assets/e9d91a33-5fcb-447a-b87f-46d3b6974c5c" />
 
 ### Central Clinical Archives (`image_e819f3.png`)
 
