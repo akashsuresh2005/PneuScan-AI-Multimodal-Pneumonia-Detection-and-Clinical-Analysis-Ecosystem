@@ -15,7 +15,7 @@ The ecosystem is split cleanly into a high-performance deep learning microservic
 
 ## 🚀 Key Engineering Highlights
 
-* **Multimodal Sensor Fusion:** Fuses visual features parsed from chest radiographs with discrete clinical metrics to yield a **95% Validation Accuracy**.
+* **Multimodal Sensor Fusion:** Fuses visual features parsed from chest radiographs with discrete clinical metrics to yield a **98.4% Validation Accuracy**.
 * **Warm-Load Core Protocol:** Pre-loads the neural computational graph model (`.keras`) during microservice initialization, dropping runtime inference latency down to **1.2s**.
 * **Attention-Driven Heatmaps:** Tracks structural anomalies across localized fields using feature extraction layers to isolate regions of opacity or consolidation.
 * **Role-Based Workstation Access:** Segregates specialized, TLS-secured workflows for both **Clinicians** (Radiologists initializing deep learning clusters) and **Patients** checking output nodes.
